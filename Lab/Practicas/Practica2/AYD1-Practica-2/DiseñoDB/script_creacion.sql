@@ -1,0 +1,29 @@
+CREATE DATABASE IF NOT EXISTS AYD1_P2_FB;
+
+USE AYD1_P2_FB;
+
+CREATE TABLE IF NOT EXISTS Usuario(
+    idUsuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombreUsuario VARCHAR(50) NOT NULL,
+    nombreCompleto VARCHAR(200) NOT NULL, 
+    claveUsuario VARCHAR(45) NOT NULL,
+    fotoPerfil VARCHAR(500) NOT NULL,
+    fechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS Publicacion(
+    idPublicacion INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    imagen VARCHAR(500),
+    descripcion VARCHAR(300),
+    fechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP ,
+    idUsuario INT NOT NULL,
+    FOREIGN KEY fk_usuario_publicacion(idUsuario)  REFERENCES Usuario(idUsuario) 
+);
+
+CREATE TABLE IF NOT EXISTS Amistad(
+	idUsuario1 INT NOT NULL,
+    idUsuario2 INT NOT NULL,
+    fechaSolicitud DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fechaAceptacion DATETIME,
+    flagAmistad BOOLEAN DEFAULT FALSE
+);
